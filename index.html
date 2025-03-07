@@ -1,0 +1,588 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Tariqul &amp; Meem</title>
+  <link href="https://fonts.googleapis.com/css2?family=Great+Vibes&family=Raleway:wght@300;400;700&display=swap" rel="stylesheet">
+  <style>
+    /* CSS Variables for Pink Theme */
+    :root {
+      --primary-color: #FFA6A6; /* Hot pink */
+      --secondary-color: #ffb6c1; /* Light pink */
+      --bg-color: #fff0f5; /* Soft pink background */
+      --accent-color: #ff1493; /* Deep pink accent */
+      --text-color: #333;
+      --font-family: 'Raleway', sans-serif;
+    }
+
+    /* Reset and Base Styles */
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      max-width: 100%;
+      
+
+
+  
+      
+    }
+
+    html {
+      scroll-behavior: smooth;
+      
+    }
+
+    body {
+      font-family: var(--font-family);
+      background: var(--bg-color);
+      color: var(--text-color);
+      overflow-x: hidden;
+    }
+
+    /* Base Animation for Sections */
+    section {
+      opacity: 0;
+      animation: fadeIn 2s ease-in-out forwards;
+         
+    }
+
+    /* Existing Animations */
+    @keyframes fadeInUp {
+      from { opacity: 0; transform: translateY(20px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    @keyframes zoomIn {
+      from { opacity: 0; transform: scale(0.8); }
+      to { opacity: 1; transform: scale(1); }
+    }
+
+    @keyframes float {
+      0%, 100% { transform: translateY(0); }
+      50% { transform: translateY(-15px); }
+    }
+
+    @keyframes typing {
+      from { width: 0; }
+      to { width: 100%; }
+    }
+
+    @keyframes blink-caret {
+      from, to { border-color: transparent; }
+      50% { border-color: var(--primary-color); }
+    }
+
+    /* New Love Animations */
+    @keyframes heartFall {
+      0% {
+        transform: translateY(-100px) scale(0.5) rotate(0deg);
+        opacity: 1;
+      }
+      100% {
+        transform: translateY(100vh) scale(1) rotate(360deg);
+        opacity: 0;
+      }
+    }
+
+    @keyframes pulseHeart {
+      0% { transform: scale(1); opacity: 0.8; }
+      50% { transform: scale(1.3); opacity: 1; }
+      100% { transform: scale(1); opacity: 0.8; }
+    }
+
+    @keyframes slideIn {
+      from { transform: translateX(100%); opacity: 0; }
+      to { transform: translateX(0); opacity: 1; }
+    }
+
+    /* Hero Section */
+    .hero {
+      position: relative;
+      height: 100vh;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      background-image: url(main.jpg);
+      background-size: cover;
+      background-position: center;
+      overflow: hidden;
+      
+    }
+
+    /* Pulsating heart overlay in Hero */
+    .pulsating-heart {
+      position: absolute;
+      top: 0%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      font-size: 8rem;
+      color: var(--accent-color);
+      opacity: 0.7;
+      animation: pulseHeart 2s infinite;
+      pointer-events: none;
+      z-index: 1;
+    }
+
+    .hero-content {
+      position: relative;
+      text-align: center;
+      color: #fff;
+      animation: fadeInUp 1.5s ease-out forwards;
+      z-index: 2;
+    }
+
+    h1 {
+      font-family: 'Great Vibes', cursive;
+      font-size: 6rem;
+      margin-bottom: 1rem;
+      text-shadow: 2px 2px 10px rgba(0, 0, 0, 0.4);
+    }
+
+    h2 {
+      font-size: 2rem;
+      margin-bottom: 1rem;
+    }
+
+    .typing {
+      font-size: 2rem;
+      color: var(--primary-color);
+      margin-top: 1rem;
+      white-space: nowrap;
+      overflow: hidden;
+      border-right: 3px solid var(--primary-color);
+      width: 0;
+      animation: typing 4s steps(40, end) forwards, blink-caret 0.75s step-end infinite;
+    }
+
+    /* Countdown Timer */
+    .countdown {
+      display: flex;
+      justify-content: center;
+      gap: 1rem;
+      margin-top: 1.5rem;
+      animation: fadeInUp 2s ease-out forwards;
+    }
+
+    .countdown div {
+      background: rgba(255, 255, 255, 0.3);
+      padding: 0.8rem;
+      border-radius: 8px;
+      min-width: 60px;
+      animation: zoomIn 1s ease-out forwards;
+    }
+
+    .countdown span {
+      display: block;
+      font-weight: bold;
+      font-size: 1.3rem;
+    }
+
+    /* Story Section */
+    .story-section {
+      padding: 4rem 1rem;
+      background: var(--bg-color);
+      text-align: center;
+      
+    }
+
+    .story-section h2 {
+      font-size: 2.5rem;
+      margin-bottom: 2rem;
+      color: var(--primary-color);
+    }
+
+    .timeline {
+      max-width: 1200px;
+      margin: auto;
+      padding: 2rem;
+      
+    }
+
+    .timeline-item {
+      background: #fff;
+      padding: 1.5rem;
+      margin: 1rem 0;
+      border-radius: 8px;
+      box-shadow: 0 8px 16px rgba(0, 0, 0, 0.1);
+      opacity: 0;
+      transform: translateY(50px);
+      animation: fadeIn 2s ease-in-out forwards;
+opacity: 0;
+    }
+
+    .timeline-item:nth-child(odd) {
+      animation-delay: 0.3s;
+    }
+
+    .timeline-item:nth-child(even) {
+      animation-delay: 0.6s;
+    }
+
+    .timeline-item h3 {
+      color: var(--primary-color);
+      margin-bottom: 0.5rem;
+    }
+
+    /* Gallery Section */
+    .gallery-section {
+      padding: 4rem 1rem;
+      background: #fff;
+      
+    }
+
+    .gallery-section h2 {
+      font-size: 2.5rem;
+      text-align: center;
+      margin-bottom: 2rem;
+      color: var(--primary-color);
+    }
+
+    .masonry-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+      grid-gap: 1rem;
+      padding: 0.5rem;
+    }
+
+    .gallery-item {
+      position: relative;
+      overflow: hidden;
+      border-radius: 10px;
+      transform: scale(0.95);
+      transition: transform 0.5s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+      animation: fadeIn 2s ease-in-out forwards;
+
+    }
+
+    .gallery-item:hover {
+      transform: scale(1);
+      box-shadow: 0 20px 40px rgba(0, 0, 0, 0.2);
+    }
+
+    .gallery-item img {
+      width: 100%;
+      height: auto;
+      display: block;
+      transition: transform 0.5s ease;
+      animation: fadeIn 2s ease-in-out forwards;
+    }
+
+    .gallery-item:hover img {
+      transform: scale(1.1);
+    }
+
+    /* Details Section */
+    .details-section {
+      padding: 4rem 1rem;
+      background: #ffe4e1; /* Misty rose background */
+      text-align: center;
+      animation: fadeIn 2s ease-in-out forwards;
+      
+    }
+
+    .details-section h2 {
+      font-size: 2.5rem;
+      margin-bottom: 2rem;
+      color: var(--primary-color);
+    }
+
+    .details-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+      gap: 2rem;
+      max-width: 1200px;
+      margin: auto;
+    }
+
+    .detail-card {
+      background: #fff;
+      padding: 1.5rem;
+      border-radius: 8px;
+      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+      opacity: 0;
+      transform: translateY(50px);
+      animation: fadeInUp 1s ease-out forwards;
+    }
+
+    .detail-card:nth-child(1) { animation-delay: 0.3s; }
+    .detail-card:nth-child(2) { animation-delay: 0.6s; }
+    .detail-card:nth-child(3) { animation-delay: 0.9s; }
+
+    .detail-card h3 {
+      font-size: 1.8rem;
+      color: var(--primary-color);
+      margin-bottom: 0.5rem;
+    }
+
+    .detail-card p {
+      font-size: 1rem;
+    }
+
+    /* Love Messages Carousel Section */
+    .love-messages {
+      padding: 4rem 1rem;
+      background: var(--secondary-color);
+      text-align: center;
+      
+      color: #fff;
+      animation: fadeIn 2s ease-in-out forwards;
+    }
+
+    .love-messages h2 {
+      font-size: 2.5rem;
+      margin-bottom: 2rem;
+    }
+
+    .message-carousel {
+      overflow: hidden;
+      position: relative;
+      height: 4rem;
+    }
+
+    .message-carousel p {
+      position: absolute;
+      width: 100%;
+      font-size: 1.5rem;
+      animation: slideIn 1s ease-out forwards;
+    }
+
+    /* Footer */
+    .footer {
+      background: var(--primary-color);
+      color: #fff;
+      padding: 1.5rem;
+      text-align: center;
+      animation: fadeInUp 1s ease-out forwards;
+    }
+
+    .footer a:hover {
+      animation: pulseHeart 1s infinite;
+    }
+
+    /* Floating Hearts Container */
+    .floating-hearts {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      pointer-events: none;
+      overflow: hidden;
+      z-index: 9999;
+    }
+
+    /* Updated Floating Hearts Animation */
+    .floating-hearts .heart {
+      position: absolute;
+      color: var(--accent-color);
+      font-size: calc(1rem + 2vw);
+      opacity: 0.7;
+      animation: heartFall linear infinite;
+      pointer-events: none;
+    }
+
+    /* Responsive Styles */
+    @media (max-width: 768px) {
+      h1 {
+        font-size: 4rem;
+      }
+      h2 {
+        font-size: 1.8rem;
+      }
+      .hero-content {
+        padding: 0 1rem;
+      }
+      .timeline, .details-grid {
+        padding: 1rem;
+      }
+    }
+  </style>
+</head>
+<body>
+  <!-- Hero Section -->
+  <section class="hero">
+    <div class="pulsating-heart">❤️</div>
+    <div class="hero-content">
+      <h1>Tariqul &amp; Meem</h1>
+      <h2>February 17, 2024</h2>
+      <div class="typing">Tariqul &amp; Meem</div>
+      <div class="countdown" id="countdown">
+        <div>
+          <span id="days">0</span>
+          Days
+        </div>
+        <div>
+          <span id="hours">0</span>
+          Hours
+        </div>
+        <div>
+          <span id="minutes">0</span>
+          Minutes
+        </div>
+        <div>
+          <span id="seconds">0</span>
+          Seconds
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Story Section -->
+  <section class="story-section">
+    <h2>Story</h2>
+    <div class="timeline">
+      <div class="timeline-item">
+        <h3>Story</h3>
+        <p>Offered on 13 or 14 February. A lot of things happened in between, after that the marriage was fixed on 16th and the marriage took place on 17th.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- Gallery Section -->
+  <section class="gallery-section">
+    <h2>Memories</h2>
+    <div class="masonry-grid">
+      <div class="gallery-item"><img src="photo1.jpg" alt="Memory 1"></div>
+      <div class="gallery-item"><img src="photo2.jpg" alt="Memory 2"></div>
+      <div class="gallery-item"><img src="photo3.jpg" alt="Memory 3"></div>
+      <div class="gallery-item"><img src="photo4.jpg" alt="Memory 4"></div>
+      <div class="gallery-item"><img src="photo5.jpg" alt="Memory 5"></div>
+      <div class="gallery-item"><img src="photo6.jpg" alt="Memory 6"></div>
+      <div class="gallery-item"><img src="photo7.jpg" alt="Memory 7"></div>
+    </div>
+  </section>
+
+  <!-- Details Section -->
+  <section class="details-section">
+    <h2>Wedding Details</h2>
+    <div class="details-grid">
+      <div class="detail-card">
+        <h3>📍 Venue</h3>
+        <p>Sunamgung<br>Sylhet, Bangladesh</p>
+      </div>
+      <div class="detail-card">
+        <h3>⏰ Time</h3>
+        <p>5:00 PM Evening<br>February 17, 2024</p>
+      </div>
+    </div>
+  </section>
+  
+
+  <!-- Love Messages Carousel -->
+  <section class="love-messages">
+    <h2>Love Messages</h2>
+    <div class="message-carousel" id="messageCarousel">
+      <p>“Love is not just about two hearts, but also the bond between two families.”</p>
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer class="footer">
+    <p>Created ❤️ by <a href="https://nirob120.netlify.app/">NIROB</a> | © 2025</p>
+  </footer>
+
+  <!-- Floating Hearts Container -->
+  <div class="floating-hearts"></div>
+
+  <script>
+    // Countdown Timer Functionality
+    const countdown = () => {
+      const weddingDate = new Date("February 17, 2024 17:00:00").getTime();
+      const now = new Date().getTime();
+      const gap = weddingDate - now;
+      
+      const second = 1000;
+      const minute = second * 60;
+      const hour = minute * 60;
+      const day = hour * 24;
+      
+      const days = Math.floor(gap / day);
+      const hours = Math.floor((gap % day) / hour);
+      const minutes = Math.floor((gap % hour) / minute);
+      const seconds = Math.floor((gap % minute) / second);
+      
+      document.getElementById("days").innerText = days;
+      document.getElementById("hours").innerText = hours;
+      document.getElementById("minutes").innerText = minutes;
+      document.getElementById("seconds").innerText = seconds;
+    };
+
+    setInterval(countdown, 1000);
+
+    // Intersection Observer for Section Animations
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if(entry.isIntersecting) {
+          entry.target.style.animation = "fadeInUp 1s ease-out forwards";
+          entry.target.style.opacity = 1;
+        }
+      });
+    }, { threshold: 0.2 });
+
+    document.querySelectorAll('section').forEach(el => observer.observe(el));
+    document.querySelectorAll('.timeline-item, .detail-card').forEach(el => observer.observe(el));
+
+    // Parallax Effect for Hero Background
+    window.addEventListener('scroll', () => {
+      const scrolled = window.pageYOffset;
+      document.querySelector('.hero').style.backgroundPositionY = `${scrolled * 0.5}px`;
+    });
+
+    // Gallery Hover 3D Effect
+    document.querySelectorAll('.gallery-item').forEach(item => {
+      item.addEventListener('mousemove', (e) => {
+        const rect = item.getBoundingClientRect();
+        const x = e.clientX - rect.left;
+        const y = e.clientY - rect.top;
+        item.style.transform = `perspective(1000px) rotateX(${(y - rect.height/2) / 25}deg) rotateY(${-(x - rect.width/2) / 25}deg) scale(1.05)`;
+      });
+      item.addEventListener('mouseleave', () => {
+        item.style.transform = 'perspective(1000px) rotateX(0) rotateY(0) scale(1)';
+      });
+    });
+
+    // Updated Floating Hearts Animation
+    function createHeart() {
+      const heart = document.createElement("div");
+      heart.classList.add("heart");
+      heart.textContent = "❤️";
+      heart.style.left = Math.random() * 100 + "vw";
+      heart.style.animationDuration = 3 + Math.random() * 3 + "s";
+      heart.style.animationDelay = Math.random() * 2 + "s";
+      heart.style.opacity = Math.random() * 0.5 + 0.5;
+      heart.style.fontSize = Math.random() * 2 + "rem";
+      
+      document.querySelector(".floating-hearts").appendChild(heart);
+      setTimeout(() => heart.remove(), 8000);
+    }
+    
+    setInterval(createHeart, 400);
+
+    // Love Messages Carousel Animation
+    const messages = [
+      "“Love is not just about two hearts, but also the bond between two families.”",
+      "“Love means laughing together, crying together, and growing together for a lifetime.”",
+      "“May your love story always be filled with joy and happiness.”",
+      "“A happy marriage is built on respect, love, and growing together every day.”",
+      "“May your love grow stronger and sweeter with time.”",
+      "“Every moment spent together is a memory in the making—cherish it always.”",
+      "“The true beauty of love is falling for each other over and over again.”"
+    ];
+    let currentMsg = 0;
+    const messageCarousel = document.getElementById("messageCarousel");
+
+    const rotateMessages = () => {
+      currentMsg = (currentMsg + 1) % messages.length;
+      const newMsg = document.createElement("p");
+      newMsg.innerText = messages[currentMsg];
+      newMsg.style.animation = "slideIn 1s ease-out forwards";
+      messageCarousel.innerHTML = "";
+      messageCarousel.appendChild(newMsg);
+    };
+
+    setInterval(rotateMessages, 4000);
+  </script>
+</body>
+</html>
